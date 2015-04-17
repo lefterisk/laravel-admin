@@ -2,7 +2,7 @@
 /**
  * Admin routes
  */
-Route::group(['prefix' => 'administrator','namespace' => 'Admin'], function()
+Route::group(['prefix' => 'administrator','namespace' => 'LaravelAdmin'], function()
 {
     Route::any('/', ['as'=> 'admin', 'uses' => 'DashboardController@index']);
 
@@ -23,8 +23,8 @@ Route::group(['prefix' => 'administrator','namespace' => 'Admin'], function()
     });
 
     Route::controllers([
-        'auth'     => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
+        'auth'     => 'Controllers\AuthController',
+        'password' => 'Controllers\PasswordController',
     ]);
 
 });

@@ -17,6 +17,9 @@
     "php": ">=5.4.0"
   },
   "autoload": {
+    "classmap": [
+      "src/Controllers"
+    ],
     "psr-4": {
       "LaravelAdmin\\": "src/"
     }
