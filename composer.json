@@ -1,0 +1,25 @@
+{
+  "name": "lefterisk/laravel-admin",
+  "description": "Administration package for Laravel",
+  "homepage": "https://github.com/lefterisk/laravel-admin",
+  "keywords": ["laravel", "laravel5", "administration"],
+  "license":"GPL-3.0",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Lefteris Kokkonas",
+      "email": "lefteris.kokkonas@gmail.com",
+      "homepage": "http://lefterisk.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelAdmin\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
