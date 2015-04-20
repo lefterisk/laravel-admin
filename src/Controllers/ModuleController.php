@@ -39,11 +39,11 @@ class ModuleController extends Controller
 		$items = $moduleClass::paginate(20);
 
 		$data = [
-			'items' => $items,
+			'items'          => $items,
 			'listingColumns' => ['name','status']
 		];
 
-		return view('admin.module.listing', $data);
+		return view('admin::module.listing', $data);
 	}
 
 	public function add($module, $parentId = null)
@@ -53,11 +53,19 @@ class ModuleController extends Controller
 		} else {
 			var_dump( 'add'. $module );
 		}
+
+		$data = [];
+
+		return view('admin::module.add', $data);
 	}
 
 	public function edit($module, $id = null)
 	{
 		var_dump( 'edit'. $module. $id );
+
+		$data = [];
+
+		return view('admin::module.edit', $data);
 	}
 
 	public function delete($module, $id = null)

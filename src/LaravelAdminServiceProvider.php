@@ -56,7 +56,7 @@ class LaravelAdminServiceProvider extends ServiceProvider {
 
         $assets = realpath(__DIR__.'/../public');
         $this->publishes([
-            $assets => public_path('vendor/admin'),
+            $assets => public_path('admin'),
         ], 'admin.assets');
 
         require_once(realpath(__DIR__.'/../routes.php'));

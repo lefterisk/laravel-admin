@@ -1,0 +1,27 @@
+{
+  "name": "laravel-admin",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lefterisk/laravel-admin",
+  "authors": [
+    "lefterisk <lefteris.kokkonas@gmail.com>"
+  ],
+  "description": "CMS front end",
+  "keywords": [
+    "cms",
+    "laravel"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-1.11.1.min": "http://code.jquery.com/jquery-1.11.1.min.js",
+    "lt-ie-9": "~0.1.0",
+    "bootstrap-sass": "~3.3.4",
+    "animate.css": "~3.2.3"
+  }
+}
