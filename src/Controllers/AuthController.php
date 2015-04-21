@@ -35,7 +35,6 @@ class AuthController extends Controller {
 		$this->auth = $auth;
 		$this->registrar = $registrar;
 
-
 		$this->middleware('LaravelAdmin\Middleware\RedirectIfAuthenticated', ['except' => 'getLogout']);
 	}
 
