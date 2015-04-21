@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PasswordController extends Controller {
 
@@ -39,4 +40,22 @@ class PasswordController extends Controller {
 		$this->middleware('LaravelAdmin\Middleware\RedirectIfAuthenticated');
 	}
 
+	/**
+	 * Override of parent class
+	 * @return \Illuminate\View\View
+	 */
+	public function getEmail()
+	{
+		return view('admin::auth.password');
+	}
+
+	public function getReset($token = null)
+	{
+		if (is_null($token))
+		{
+			throw new NotFoundHttpException;
+		}
+
+		return view('admin::auth.reset')->with('token', $token);
+	}
 }

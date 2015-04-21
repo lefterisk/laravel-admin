@@ -48,15 +48,15 @@ class LaravelAdminServiceProvider extends ServiceProvider {
             $seeds => $this->app->databasePath() . '/seeds',
         ], 'admin.seeds');
 
-        $views = realpath(__DIR__.'/../resources/views/admin');
+        $views = realpath(__DIR__.'/../resources/views/laravel-admin');
         $this->loadViewsFrom($views, 'admin');
         $this->publishes([
-            $views => base_path('resources/views/admin'),
+            $views => base_path('resources/views/laravel-admin'),
         ], 'admin.views');
 
         $assets = realpath(__DIR__.'/../public');
         $this->publishes([
-            $assets => public_path('admin'),
+            $assets => public_path('assets/laravel-admin'),
         ], 'admin.assets');
 
         require_once(realpath(__DIR__.'/../routes.php'));
