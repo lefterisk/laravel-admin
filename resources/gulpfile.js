@@ -22,7 +22,8 @@ gulp.task('default', function() {
             'app-js',
             'app-scss',
             'separate-js',
-            'fonts'
+            'fonts',
+            'images'
         ]
     );
 });
@@ -50,7 +51,6 @@ gulp.task('vendor-js', function () {
         [
             'bower_components/jquery-1.11.1.min/index.js',
             'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-            'js/pickaday.min.js'
         ]
     )
         .pipe(concat('cms-vendor.min.js'))
@@ -61,7 +61,7 @@ gulp.task('vendor-js', function () {
 
 //Concat & compress application specific files
 gulp.task('app-js', function () {
-    gulp.src(['js/cms/*.js'])
+    gulp.src(['js/*.js'])
         .pipe(concat('cms-app.min.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
@@ -70,7 +70,7 @@ gulp.task('app-js', function () {
 
 //File watcher: if an app specific js is edited run concat compressor again
 gulp.task('watch-app-js', ['app-js'], function () {
-    gulp.watch('js/cms/*.js', ['app-js']);
+    gulp.watch('js/*.js', ['app-js']);
 });
 
 //Copy over scripts that for some reason need to be alone (not concatenated with the rest)
@@ -136,3 +136,12 @@ gulp.task('fonts', function() {
 /**
  * END OF FONTS RELATED TASKS
  */
+
+/**
+ * IMG RELATED TASKS
+ */
+gulp.task('images', function() {
+    //for now copy over the bootstrap fonts
+    gulp.src('img/**/*')
+        .pipe(gulp.dest('../public/img'));
+});
