@@ -11,7 +11,7 @@ Route::group(['prefix' => 'admin','namespace' => 'LaravelAdmin\Controllers'], fu
     Route::group(['prefix' => 'module'], function()
     {
         Route::any('{module}',                 ['as' => 'admin.module', 'uses' => 'ModuleController@index'])->where(['module' => '[a-zA-Z][a-zA-Z0-9_-]*']);
-        Route::any('{module}/add',             ['as' => 'admin.module.add', 'uses' => 'ModuleController@add'])->where(['id' => '[0-9_-]*', 'module' => '[a-zA-Z][a-zA-Z0-9_-]*']);
+        Route::any('{module}/add',             ['as' => 'admin.module.add', 'uses' => 'ModuleController@add'])->where(['module' => '[a-zA-Z][a-zA-Z0-9_-]*']);
 
         Route::any('{module}/parent/{id}',     ['as' => 'admin.module.parent', 'uses' => 'ModuleController@index'])->where(['id' => '[0-9_-]*', 'module' => '[a-zA-Z][a-zA-Z0-9_-]*', 'page' => '[0-9]+']);
         Route::any('{module}/parent/{id}/add', ['as' => 'admin.module.parent.add', 'uses' => 'ModuleController@add'])->where(['id' => '[0-9_-]*', 'module' => '[a-zA-Z][a-zA-Z0-9_-]*']);

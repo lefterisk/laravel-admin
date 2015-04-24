@@ -6,39 +6,34 @@ use Illuminate\Support\Facades\Input;
 
 class ModuleController extends Controller
 {
+	protected $moduleName;
+	protected $moduleClass;
+	protected $moduleConfig;
+
 	public function __construct()
 	{
 		$this->middleware('LaravelAdmin\Middleware\Authenticate');
+		$this->middleware('LaravelAdmin\Middleware\ModuleValidate');
 	}
 
 	public function index($module, $parentId = null)
 	{
+		$this->_moduleAssignment($module);
+
 		$sort          = Input::get('sort_by');
 		$sortDirection = Input::get('sort_direction');
 		$page          = Input::get('page');
-
-		$moduleCamelcase  = str_replace(' ', '', ucwords(str_replace('_', ' ', $module)));
-		$moduleConfigPath = app_path(Config::get('app.model_config_path') . '/' . $moduleCamelcase . '.php');
-		$moduleClass      = 'LaravelAdmin\\' . $moduleCamelcase;
-
-		if (!File::exists($moduleConfigPath)) {
-			abort(404, 'error.module_config_not_found');
-		}
-
-		if (!class_exists($moduleClass)) {
-			abort(404, 'error.module_model_class_not_found');
-		}
-
-		$moduleConfig = require_once($moduleConfigPath);
 
 //		$currentPage = 2;
 //		Paginator::currentPageResolver(function() use ($currentPage) {
 //			return $currentPage;
 //		});
 
-		$items = $moduleClass::paginate(20);
+		$class = $this->moduleClass;
+		$items = $class::paginate(20);
 
 		$data = [
+			'module'         => $module,
 			'items'          => $items,
 			'listingColumns' => ['name','status']
 		];
@@ -48,19 +43,24 @@ class ModuleController extends Controller
 
 	public function add($module, $parentId = null)
 	{
+		$this->_moduleAssignment($module);
+
 		if (!empty($parentId)) {
-			var_dump( $module . ' add with parentId =' . $parentId);
-		} else {
-			var_dump( 'add'. $module );
+
 		}
 
-		$data = [];
+
+		$data = [
+			'module' => $module,
+			'form_config' => $this->moduleConfig['form']
+		];
 
 		return view('admin::module.add', $data);
 	}
 
 	public function edit($module, $id = null)
 	{
+		$this->_moduleAssignment($module);
 		var_dump( 'edit'. $module. $id );
 
 		$data = [];
@@ -70,11 +70,20 @@ class ModuleController extends Controller
 
 	public function delete($module, $id = null)
 	{
+		$this->_moduleAssignment($module);
 		var_dump( 'delete' . $module. $id );
 	}
 
 	public function deleteMultiple($module)
 	{
+		$this->_moduleAssignment($module);
 		var_dump( 'deleteMultiple' . $module);
+	}
+
+	private function _moduleAssignment($module)
+	{
+		$this->moduleName   = ucfirst(camel_case($module));
+		$this->moduleClass  = 'LaravelAdmin\\' . $this->moduleName;
+		$this->moduleConfig = Config::get('laravel-admin.models.' . $this->moduleName);
 	}
 }

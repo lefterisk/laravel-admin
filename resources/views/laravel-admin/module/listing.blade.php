@@ -21,7 +21,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Title</h3>
                 <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-toggle="tooltip" title="Add an item"><i class="fa fa-plus"></i> </button>
+                    <button class="btn btn-box-tool" data-toggle="tooltip" title="Add an item"><i class="fa fa-plus-circle"></i> </button>
                     <button class="btn btn-box-tool" data-toggle="tooltip" title="Delete selected"><i class="fa fa-trash-o"></i></button>
                 </div>
             </div>
@@ -43,10 +43,10 @@
                             @foreach($listingColumns as $column)
                                 <td>{{ $item->{$column} }}</td>
                             @endforeach
-                            <td width="100" class="text-center">
+                            <td width="65" class="text-center">
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a href="" class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit item"><i class="fa fa-pencil"></i></a>
-                                    <a href="" class="btn btn-default btn-xs" data-toggle="tooltip" title="Delete item"><i class="fa fa-trash-o"></i></a>
+                                    <a href="" class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                    <a href="" class="btn btn-default btn-xs" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -57,7 +57,7 @@
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <div class="btn-group" role="group" aria-label="...">
-                    <a href="" class="btn btn-default"><i class="fa fa-plus-circle"></i> Add</a>
+                    <a href="{{route('admin.module.add', array('module' => $module))}}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Add</a>
                     <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete Selected</button>
                 </div>
 

@@ -33,9 +33,9 @@ class LaravelAdminServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $configuration = realpath(__DIR__.'/../config/laravelAdmin.php');
+        $configuration = realpath(__DIR__.'/../config');
         $this->publishes([
-            $configuration => config_path('laravelAdmin.php'),
+            $configuration => config_path(),
         ], 'admin.config');
 
         $migrations = realpath(__DIR__.'/../database/migrations');
